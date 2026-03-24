@@ -1018,13 +1018,16 @@ function saveState() {
 function loadState() {
   try {
     const saved = sessionStorage.getItem('cs_state');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      Object.assign(state, parsed);
-      return true;
-    }
-  } catch (e) {}
-  return false;
+    if (!saved) return false;
+    const parsed = JSON.parse(saved);
+    // Validate it looks like real state before restoring
+    if (!parsed.studentName || typeof parsed.studentName !== 'string') return false;
+    Object.assign(state, parsed);
+    return true;
+  } catch (e) {
+    sessionStorage.clear();
+    return false;
+  }
 }
 
 // ══════════════════════════════════════════════════════════════

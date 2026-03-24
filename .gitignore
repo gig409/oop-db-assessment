@@ -1,0 +1,15 @@
+# Cloudflare
+.wrangler/
+.dev.vars
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Node (if you ever add Wrangler locally)
+node_modules/
